@@ -97,11 +97,11 @@ X_{ij} =
 $$
 
 $$
-X_{ij} \in \{0, 1\},\ \ \ \forall\ i,j
+X_{ij} \in \\{0, 1\\},\ \ \ \forall\ i,j
 $$
 
 $$
-i \in [0, 1, 2, \dots, n]
+i \in \\{0, 1, 2, \dots, n\\}
 $$
 
 $$
@@ -109,7 +109,7 @@ n = N-1
 $$
 
 $$
-j \in [0, 1, 2, \dots, m]
+j \in \\{0, 1, 2, \dots, m\\}
 $$
 
 $$
@@ -169,7 +169,7 @@ donde el producto $A^{T}Z\ B = A^{T}(F\ X)\ B$ resulta en un escalar $(1 \times 
 Cada cartera debe tener aproximadamente la misma cantidad de clientes. Esto se representa como la suma de todos los clientes en cada cartera debe ser mayor o igual a la parte entera del cociente entre la cantidad de clientes y el número de carteras (parte entera del promedio simple). Además, se considera un parámetro de holgura *opcional* ($h_{c}$) que ayuda a relajar la restricción, contribuyendo a la velocidad de convergencia del modelo.
 
 $$
-\sum_{i=0}^{n} X_{ij} \geq \left\lfloor \frac{N}{M} \right\rfloor - h_{c},\ \{\forall\ j\in m\  \wedge N \gt M\}
+\sum_{i=0}^{n} X_{ij} \geq \left\lfloor \frac{N}{M} \right\rfloor - h_{c},\ \forall\ j\in m\  \wedge N \gt M
 $$
 
 #### 2. Total de ingresos por cartera
@@ -177,7 +177,7 @@ $$
 Cada cartera debe acumular aproximadamente la misma cantidad de ingresos. Si el cliente es asignado a la cartera, entonces sus ingresos también. Entonces, la suma de esos ingresos debe ser mayor que la parte entera del promedio simple entre la suma de los ingresos y la cantidad de carteras. También se considera un parámetro de holgura *opcional* ($h_{f}$) que ayude a relajar la resitrcción y mejorar la velocidad de convergencia.
 
 $$
-\sum_{i=0}^{n} F_{i}X_{ij} \geq \left\lfloor \frac{F_{s}}{M} \right\rfloor - h_{f},\ \{\forall\ j\in m\  \wedge F_{s} \gt M\}
+\sum_{i=0}^{n} F_{i}X_{ij} \geq \left\lfloor \frac{F_{s}}{M} \right\rfloor - h_{f},\ \forall\ j\in m\  \wedge F_{s} \gt M
 $$
 
 #### 3. Asignar clientes a una sola cartera
@@ -185,7 +185,7 @@ $$
 Cada cliente puede estar asignado a una y solo una cartera, aunque la restricción permite que también pueda no estar asignado a ninguna. Esto es especialmente importante para los casos donde la cantidad de clientes no es un múltiplo del número de carteras.
 
 $$
-\sum_{j=0}^{m} X_{ij} \leq 1,\ \{\forall\ i\in n\}
+\sum_{j=0}^{m} X_{ij} \leq 1,\ \forall\ i\in n
 $$
 
 #### 4. Variable binaria
@@ -193,7 +193,7 @@ $$
 Para el cumplimiento de la formalidad, se declara como restricción que las variables de decisión del modelo son todas binarias.
 
 $$
-X_{ij} \in \{0, 1\},\ \{\forall\ i\in n\ \wedge j \in m\}
+X_{ij} \in \\{0, 1\\},\ \forall\ i\in n\ \wedge j \in m
 $$
 
 ### Cardinalidad
