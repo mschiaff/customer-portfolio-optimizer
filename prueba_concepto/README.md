@@ -99,4 +99,4 @@ Aquí se describen las condiciones técnicas bajo las cuales fue desarrollada la
 - cffi 1.17.1 (pypi, pip)
 
 ### Otras dependencias
-- solver CBC (github, coin-or/Cbc)
+- solver CBC (homebrew, coin-or/Cbc)
