@@ -7,7 +7,7 @@ En esta sección se encuentra una POC desarrollada en Jupyter Notebook utilizand
 - [Creación del dataset](#creación-del-dataset)
 - [Modelo de optimización](#modelo-de-optimización)
 - [Principales resultados y conclusiones](#principales-resultados-y-conclusiones)
-- [Información para reproducción](#reproducción-de-resultados)
+- [Información para reproducción](#información-para-reproducción)
 
 ## Creación del dataset
 
@@ -17,7 +17,7 @@ Se crea un dataset con los campos de `Rut` e `Ingresos` para simular un caso de 
 
 El campo de `Rut` es creado mediante la generación aleatoria de correlativos que siguen una distribución uniforme en el rango de $[50.000.000, 75.000.000]$. Luego, se calcula el dígito verificador de cada correlativo generado aleatoriamente aplicando el algoritmo [Módulo 11](https://es.wikipedia.org/wiki/Código_de_control), que es el utilizado en Chile, y su implementación encuentra dentro de este mismo repositorio ([Implementación Módulo 11](./lib/rut.py)).
 
-El campo de `Ingresos` también es creado mediante la generación aleatoria de valores que siguen una distribución uniforme, pero en el rango de $[\$900.000, \$3.000.000]$.
+El campo de `Ingresos` también es creado mediante la generación aleatoria de valores que siguen una distribución uniforme, pero en el rango de $`[\$900.000, \$ 3.000.000]`$.
 
 Luego de mostrar alguna información y estadísticas básicas del dataset, este es exportado a un libro Excel que se encuentra en la carpeta [data](./data/) bajo el nombre `Dataset_Ejemplo.xlsx`.
 
@@ -29,7 +29,7 @@ El problema propuesto en este ejemplo es distribuir los 5.721 clientes y e ingre
 
 El modelo planteado consigue asignar a casi todos los clientes entre las 4 carteras, quedando solo 5 sin asignar, los cuales pueden ser perfectamente asignados *"manualmente"*. Las 4 carteras terminan con exactamente la misma cantidad de clientes, y una suma de ingresos bastante similar entre cada una, presentando una desviación promedio de 0,2% respecto al promedio simple del total de ingresos sobre la cantidad de carteras, que vendría a ser el valor teórico ideal.
 
-Con relación al desempeño, el modelo con holgura de ingresos ($h_{f}$) de $\$5.000.000$ converge a una solución óptima en 3 segundos, lo que representa una reducción de 98% en el tiempo de ejecución respecto al modelo con holgura de ingresos de $\$4.000.000$, sin generar un mayor perjuicio en la asignación de clientes e ingresos.
+Con relación al desempeño, el modelo con holgura de ingresos ($h_{f}$) de $`\$5.000.000`$ converge a una solución óptima en 3 segundos, lo que representa una reducción de 98% en el tiempo de ejecución respecto al modelo con holgura de ingresos de $`\$4.000.000`$, sin generar un mayor perjuicio en la asignación de clientes e ingresos.
 
 <table align="center">
   <thead>
