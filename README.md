@@ -22,7 +22,7 @@ Antes de probar o usar el modelo localmente, es necesario instalar la librería 
 pip install git+https://github.com/coin-or/python-mip.git
 ```
 
-2. Instalación de CBC (homebrew)
+2. Instalación de CBC ([homebrew](https://brew.sh))
 ```sh
 brew tap coin-or-tools/coinor
 ```
