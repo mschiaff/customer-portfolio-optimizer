@@ -7,6 +7,7 @@ En esta sección se encuentra una POC desarrollada en Jupyter Notebook utilizand
 - [Creación del dataset](#creación-del-dataset)
 - [Modelo de optimización](#modelo-de-optimización)
 - [Principales resultados y conclusiones](#principales-resultados-y-conclusiones)
+- [Información para reproducción](#reproducción-de-resultados)
 
 ## Creación del dataset
 
@@ -72,3 +73,30 @@ Con relación al desempeño, el modelo con holgura de ingresos ($h_{f}$) de $\$5
     </tr>
   </tbody>
 </table>
+
+## Información para reproducción
+
+Aquí se describen las condiciones técnicas bajo las cuales fue desarrollada la POC, las que pueden ser de utilidad para reproducir los resultados.
+
+> :warning: Existen problemas conocidos para la instalación del solver `CBC` y la librería `mip` en Apple Silicon (por la arquitectura arm64). Se recomienda la instalación de [`CBC`](https://github.com/coin-or/Cbc) mediante [homebrew](https://brew.sh), y la de [`mip`](https://github.com/coin-or/python-mip/tree/master) directo desde la fuente en GitHub. Las instrucciones generales de instalación se encuentran en [Instalación dependencias necesarias](https://github.com/mschiaff/customer-portfolio-optimizer/blob/main/README.md#instalación-dependecias-necesarias). Para más información sobre estas dependencias, visitar los enlaces de cada una.
+
+### Sistema
+- Máquina: MacBook Pro (late 2021)
+- Chip: M1 Pro (Apple Silicon)
+- Arquitectura: arm64
+- OS: macOS Sequoia 15.1
+- RAM: 16 GB
+- SSD: 512 GB
+
+### Entorno
+- conda 24.5.0
+- Python Version 3.12.5
+
+### Librerías Python
+- mip 1.16rc1.dev2+g0ccb811 (github, coin-or/python-mip)
+- pandas 2.2.3 (pypi, pip)
+- numpy 2.1.2 (pypi, pip)
+- cffi 1.17.1 (pypi, pip)
+
+### Otras dependencias
+- solver CBC (github, coin-or/Cbc)
