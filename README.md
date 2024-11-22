@@ -6,6 +6,7 @@ Modelo de optimización/programación lineal binaria que busca distribuir bases 
 
 - [Instalación dependencias necesarias](#instalación-dependecias-necesarias)
 - [Descripción general del modelo](#descripción-general-del-modelo)
+- [Licencia](#licencia)
 - [Referencias](#referencias)
 
 ## Instalación dependecias necesarias
@@ -208,6 +209,10 @@ $$
 $$
 \text{Cantidad de restricciones (con binarias)} = 2M + N(1+M)
 $$
+
+## Licencia
+
+[MIT](LICENSE)
 
 ## Referencias
 
