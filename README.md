@@ -1,20 +1,3 @@
-<style>
-    table {
-        margin: 0 auto;
-    }
-    
-    table, th {
-        border: solid black;
-        border-width: 3px;
-        border-collapse: collapse;
-    }
-
-    td {
-        border: solid black;
-        border-width: 2px;
-    }
-</style>
-
 # Customer Portfolio Optimizer
 
 Modelo de optimización/programación lineal binaria que busca distribuir bases de n-clientes en m-carteras, equilibrando la cantidad de clientes e ingresos contenidos en cada una. Si bien el uso inicial es el recién descrito, puede ser perfectamente adaptado para otros usos donde se requiera distribuir ciertos elementos acompañados de un valor de manera uniforme en distintas clases o etiquetas.
@@ -60,7 +43,7 @@ Supongamos que tenemos una base de $n$ clientes que necesitamos distribuir en $m
 
 Si contamos con una base de datos que al menos contenga un *"id"* para cada cliente junto con los ingresos que cada cliente representa, entonces ya tenemos la información necesaria para el caso de uso.
 
-<table>
+<table align="center">
     <thead>
         <tr>
             <th scope="col">Id Cliente</th>
@@ -92,7 +75,9 @@ Si contamos con una base de datos que al menos contenga un *"id"* para cada clie
 Se define la siguiente convención, la cual tiene como propósito declarar la notación que será utilizada para representar la cantidad de clientes y carteras en las que se busca distribuirlos.
 
 $$
-N = \text{Cantidad Clientes } \\
+N = \text{Cantidad Clientes }
+$$
+$$
 M = \text{Cantidad Carteras }
 $$
 
@@ -107,22 +92,36 @@ X_{ij} =
 \begin{cases} 
 1, & \text{Se asigna el cliente “i” a la cartera “j”} \\ 
 0, & \text{En caso contrario}
-\end{cases} \\[5pts]
+\end{cases}
+$$
 
-X_{ij} \in \{0, 1\},\ \ \ \forall\ i,j \\[20pts]
+$$
+X_{ij} \in \{0, 1\},\ \ \ \forall\ i,j
+$$
 
-i \in [0, 1, 2, \dots, n] \\
-n = N-1 \\[10pts]
+$$
+i \in [0, 1, 2, \dots, n]
+$$
 
-j \in [0, 1, 2, \dots, m] \\
-m = M-1 \\[20pts]
+$$
+n = N-1
+$$
 
+$$
+j \in [0, 1, 2, \dots, m]
+$$
+
+$$
+m = M-1
+$$
+
+$$
 X = \begin{bmatrix}
 X_{00} & X_{01} & X_{02} & X_{03} \\
 X_{10} & X_{11} & X_{12} & X_{13} \\
 \vdots & \vdots & \vdots & \vdots \\
 X_{n0} & X_{n1} & X_{n2} & X_{nm}
-\end{bmatrix}_{N\ \times M} \\[20pts]
+\end{bmatrix}_{N\ \times M}
 $$
 
 ### Parámetros
@@ -130,15 +129,19 @@ $$
 Los únicos parámetros del modelo, y también del presente problema de ejemplo, son los ingresos de cada cliente, los cuales son también representados como una matriz diagonal. Además, también se define el parámetro $F_{s}$ como el valor de la suma de los ingresos de todos los clientes.
 
 $$
-F_{i} = \text{Ingresos del cliente "i"} \\[20pts]
+F_{i} = \text{Ingresos del cliente "i"}
+$$
 
+$$
 F = \begin{bmatrix}
 F_{0} & 0 & 0 & 0 \\
 0 & F_{1} & 0 & 0 \\
 \vdots & \vdots & \vdots & \vdots \\
 0 & 0 & 0 & F_{n}
-\end{bmatrix}_{N\ \times N} \\[20pts]
+\end{bmatrix}_{N\ \times N}
+$$
 
+$$
 F_{s} = \sum_{i=0}^{n} F_{i},\ \forall\ i \in n
 $$
 
@@ -195,8 +198,14 @@ $$
 ### Cardinalidad
 
 $$
-\text{Cantidad de variables de decisión} = N \cdot M \\
-\text{Cantidad de restricciones (sin binarias)} = 2M + N \\
+\text{Cantidad de variables de decisión} = N \cdot M
+$$
+
+$$
+\text{Cantidad de restricciones (sin binarias)} = 2M + N
+$$
+
+$$
 \text{Cantidad de restricciones (con binarias)} = 2M + N(1+M)
 $$
 
