@@ -1,6 +1,8 @@
 # Customer Portfolio Optimizer
 
-Modelo de optimización/programación lineal binaria que busca distribuir bases de n-clientes en m-carteras, equilibrando la cantidad de clientes e ingresos contenidos en cada una. Si bien el uso inicial es el recién descrito, puede ser perfectamente adaptado para otros usos donde se requiera distribuir ciertos elementos acompañados de un valor de manera uniforme en distintas clases o etiquetas.
+Modelo de programación lineal binaria que busca distribuir bases de $n$ registros - donde cada uno está acompañado de un valor continuo o discreto - en $m$ clases o etiquetas, equilibrando el recuento de registros y suma de valores contenidos en cada clase. Si bien esta es una descripción generalizada, en la [descripción general del modelo](#descripción-general-del-modelo) se explica mediante un caso de uso hipotético, pero concreto.
+
+En este repositorio, por un lado, podrán encontrar una [POC](./prueba_concepto), donde se muestra con mucho detalle la aplicación del modelo utilizando un dataset sintético. Y, por otro lado, también encontrarán el módulo [`optimizer`](./port-opt), el cual contiene una sola clase (`Optimizer`), y representa una implementacion generalizada que lo hace aplicable a cualquier escenario que cumpla con las condiciones.
 
 ## Tabla de Contenidos
 
@@ -13,7 +15,7 @@ Modelo de optimización/programación lineal binaria que busca distribuir bases 
 
 > :warning: Se recomienda el uso de un entorno virtual.
 
-Antes de probar o usar el modelo localmente, es necesario instalar la librería de python ["mip"](https://github.com/coin-or/python-mip?tab=readme-ov-file) y el solver [CBC](https://github.com/coin-or/Cbc?tab=readme-ov-file) (open-source) para programación lineal mixta, el cual es usado por la librería ["mip"](https://github.com/coin-or/python-mip?tab=readme-ov-file).
+Antes de usar la POC o el módulo localmente, es necesario instalar la librería de python ["mip"](https://github.com/coin-or/python-mip?tab=readme-ov-file) y el solver [CBC](https://github.com/coin-or/Cbc?tab=readme-ov-file) (open-source) para programación lineal mixta, el cual es usado por la librería ["mip"](https://github.com/coin-or/python-mip?tab=readme-ov-file).
 
 ### macOS - Apple Silicon
 
