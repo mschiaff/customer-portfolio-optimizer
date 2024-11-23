@@ -1,8 +1,8 @@
 # Customer Portfolio Optimizer
 
-Modelo de programación lineal binaria que busca distribuir bases de $n$ registros - donde cada uno está acompañado de un valor continuo o discreto - en $m$ clases o etiquetas, equilibrando el recuento de registros y suma de valores contenidos en cada clase. Si bien esta es una descripción generalizada, en la [descripción general del modelo](#descripción-general-del-modelo) se explica mediante un caso de uso hipotético, pero concreto.
+Modelo de programación lineal binaria que busca distribuir bases de $n$ registros - donde cada uno está acompañado de un valor continuo o discreto - en $m$ clases o etiquetas, equilibrando el recuento de registros y suma de valores contenidos en cada clase. En la sección de [descripción del modelo](#descripción-del-modelo), este se explica mediante un caso de uso hipotético, pero concreto.
 
-En este repositorio, por un lado, podrán encontrar una [POC (Proof of Concept)](./poc), donde se muestra con mucho detalle la aplicación del modelo utilizando un dataset sintético. Y, por otro lado, también encontrarán el módulo [`optimizer`](./port-opt), el cual contiene una sola clase (`Optimizer`), y representa una implementacion generalizada que lo hace aplicable a cualquier escenario que cumpla con las condiciones.
+En este repositorio, por un lado, podrán encontrar una [POC (Proof of Concept)](./poc), donde se muestra con mucho detalle la aplicación del modelo utilizando un dataset sintético apoyado por Jupyter Notebooks. Y, por otro lado, también encontrarán el módulo [`optimizer`](./port-opt), el cual contiene una sola clase (`Optimizer`), y representa una implementacion generalizada que lo hace aplicable a cualquier escenario que cumpla con las condiciones.
 
 ## Tabla de Contenidos
 
