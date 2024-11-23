@@ -2,16 +2,16 @@
 
 Modelo de programación lineal binaria que busca distribuir bases de $n$ registros - donde cada uno está acompañado de un valor continuo o discreto - en $m$ clases o etiquetas, equilibrando el recuento de registros y suma de valores contenidos en cada clase. Si bien esta es una descripción generalizada, en la [descripción general del modelo](#descripción-general-del-modelo) se explica mediante un caso de uso hipotético, pero concreto.
 
-En este repositorio, por un lado, podrán encontrar una [POC](./prueba_concepto), donde se muestra con mucho detalle la aplicación del modelo utilizando un dataset sintético. Y, por otro lado, también encontrarán el módulo [`optimizer`](./port-opt), el cual contiene una sola clase (`Optimizer`), y representa una implementacion generalizada que lo hace aplicable a cualquier escenario que cumpla con las condiciones.
+En este repositorio, por un lado, podrán encontrar una [POC (Proof of Concept)](./poc), donde se muestra con mucho detalle la aplicación del modelo utilizando un dataset sintético. Y, por otro lado, también encontrarán el módulo [`optimizer`](./port-opt), el cual contiene una sola clase (`Optimizer`), y representa una implementacion generalizada que lo hace aplicable a cualquier escenario que cumpla con las condiciones.
 
 ## Tabla de Contenidos
 
-- [Instalación dependencias necesarias](#instalación-dependecias-necesarias)
-- [Descripción general del modelo](#descripción-general-del-modelo)
+- [Instalación de dependencias](#instalación-de-dependecias)
+- [Descripción del modelo](#descripción-del-modelo)
 - [Licencia](#licencia)
 - [Referencias](#referencias)
 
-## Instalación dependecias necesarias
+## Instalación de dependecias
 
 > :warning: Se recomienda el uso de un entorno virtual.
 
@@ -38,7 +38,7 @@ brew install coin-or-tools/coinor/cbc
 pip install --upgrade cffi
 ```
 
-## Descripción general del modelo
+## Descripción del modelo
 
 El modelo es explicado en base a un ejemplo particular, sin embargo, como se menciona al [inicio](#customer-portfolio-optimizer), puede ser aplicado en otros contextos con necesidades y características similares.
 
