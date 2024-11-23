@@ -84,7 +84,7 @@ $$
 M = \text{Cantidad Carteras }
 $$
 
-Más adelante, también se mostrarán las representaciones matriciales de las variables de decisión, parámetros y función objetivo, la que si bien no es la "tradicional", permite mostrar ciertos elementos del modelo - para algnunos - de una forma visualmente más fácil de comprender.
+Más adelante, también se mostrarán las representaciones matriciales de las variables de decisión, parámetros y función objetivo, la que si bien no es la "tradicional", permite mostrar ciertos elementos del modelo de una manera distinta.
 
 ### Variables de decisión
 
