@@ -88,7 +88,7 @@ Más adelante, también se mostrarán las representaciones matriciales de las va
 
 ### Variables de decisión
 
-Se define una única variable de decisión binaria $X_{ij}$ que representa si si un cliente es asignado a alguna cartera o no. Habrá tantas variables de decisión como el producto entre la cantidad de clientes y carteras donde se quieran distribuir ($N \times M$). Además, notar que se usan las letras $n$ y $m$ (en minúscula) para representar a los clientes y carteras en su forma [*"zero-indexed"*](https://en.wikipedia.org/wiki/Zero-based_numbering). También se muestra la representación matricial de las variables de decisión.
+Se define una única variable de decisión binaria $X_{ij}$ que representa si un cliente es asignado a alguna cartera o no. Habrá tantas variables de decisión como el producto entre la cantidad de clientes y carteras donde se quieran distribuir ($N \times M$). Además, notar que se usan las letras $n$ y $m$ (en minúscula) para representar a los clientes y carteras en su forma [*"zero-indexed"*](https://en.wikipedia.org/wiki/Zero-based_numbering). También se muestra la representación matricial de las variables de decisión.
 
 $$
 X_{ij} =
