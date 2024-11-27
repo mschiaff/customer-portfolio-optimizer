@@ -72,6 +72,14 @@ Con relación al desempeño, el modelo con holgura de ingresos ($h_{f}$) de $`\$
       <td>-</td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <th scope="row">Totales</th>
+      <td>5.721</td>
+      <td>$11.174.633.002</td>
+      <td>-</td>
+    </tr>
+  </tfoot>
 </table>
 
 ## Información para reproducción
