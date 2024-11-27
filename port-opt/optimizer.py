@@ -303,5 +303,3 @@ class Optimizer:
             df.drop(columns=col_names, inplace=True)
             df = self.dataset.merge(df, left_index=True, right_index=True)
             return df
-
-opt = Optimizer()
