@@ -86,7 +86,7 @@ Con relación al desempeño, el modelo con holgura de ingresos ($h_{f}$) de $`\$
 
 Aquí se describen las condiciones técnicas bajo las cuales fue desarrollada la POC, las que pueden ser de utilidad para reproducir los resultados.
 
-> :warning: Existen problemas conocidos para la instalación del solver `CBC` y la librería `mip` en Apple Silicon (por la arquitectura arm64). Se recomienda la instalación de [`CBC`](https://github.com/coin-or/Cbc) mediante [homebrew](https://brew.sh), y la de [`mip`](https://github.com/coin-or/python-mip/tree/master) directo desde la fuente en GitHub. Las instrucciones generales de instalación se encuentran en [Instalación dependencias necesarias](https://github.com/mschiaff/customer-portfolio-optimizer/blob/main/README.md#instalación-de-dependecias). Para más información sobre estas dependencias, visitar los enlaces de cada una.
+> :warning: Existen problemas conocidos para la instalación del solver `CBC` y la librería `mip` en Apple Silicon (por la arquitectura arm64). Se recomienda la instalación de [`CBC`](https://github.com/coin-or/Cbc) mediante [homebrew](https://brew.sh), y la de [`mip`](https://github.com/coin-or/python-mip/tree/master) directo desde la fuente en GitHub. Las instrucciones generales de instalación se encuentran en [Instalación de dependencias](https://github.com/mschiaff/customer-portfolio-optimizer/blob/main/README.md#instalación-de-dependecias). Para más información sobre estas dependencias, visitar los enlaces de cada una.
 
 ### Sistema
 - Máquina: MacBook Pro (late 2021)
