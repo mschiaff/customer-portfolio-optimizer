@@ -5,12 +5,115 @@ import numpy as np
 from numpy import ndarray
 from typing import Union
 from pandas import DataFrame
+from pandas import RangeIndex
 from mip import Model, LinExprTensor
 from dataclasses import dataclass, field
 from mip import OptimizationStatus as mipStatuts
 
 @dataclass
 class Optimizer:
+    """
+    Optimizador que busca balancear la distribución de registros acompañados de una
+    medida continua o discreta (valor) en distintas clases o etiqueta.
+
+    Parámetros
+    ----------
+    dataset : pandas.DataFrame
+        Dataset que contiene los valores que se busca distribuir en las distintas clases.
+        Los registros son tomados de `pandas.DataFrame.index`, por lo que se recomienda que
+        sea un `pandas.RangeIndex` (start=0, stop=n-1, step=1).
+
+    values_name : str
+        Nombre del campo con los valores a distribuir en clases dentro del `dataset`. Este
+        nombre también es usado para los nombres de las restricciones que determinan cuánto
+        de los valores acumulará cada clase o etiqueta. Ver `labels_name` para conocer la
+        representación.
+    
+    n_labels : int
+        Cantidad clases o etiquetas en las que se desea distribuir en forma balanceada
+        la cantidad de registros y valores que los acompañan.
+    
+    records_slack (opcional) : int, default 0
+        Holgura para la cantidad de registros que se desea entregar a las registricciones
+        de cantidad de registros. Si cada clase debe contener `N/M` registros, este valor
+        permite que sean al menos `N/M - records_slack`.
+    
+    values_slack (opcional) : int, default 0
+        Holgura para la suma de valores que debe acumular cada clase. Típicamente sería
+        `F/M`, y con holgura se permite que sean al menos `F/M - values_slack`.
+    
+    records_name (opcional): str, default 'record'
+        Parte del nombre que tendrán las restricciones y variables de decisión relacionadas con
+        la variable de decisión. Siendo `i` cada registro y `j` cada clase o etiqueta, las variables
+        de decisión tendrán el nombre `f'{records_name}_{labels_name}_i_j'`; las restricciones que
+        determinan la cantidad de registros por clase o etiqueta tendrán el nombre `f'{records_name}_{labels_name}'`;
+        y las restricciones que determinan si un registro es asignado a una clase tendrán el nombre
+        `f'{records_name}_{i}_assigned'`. Para más detalles sobre cómo acceder a las restricciones,
+        ver `@property.model`.
+    
+    labels_name (opcional): str, default 'label'
+        Parte del nombre que tendrán las restricciones relacionadas con los valores a ser distribuidos
+        en cada clase o etiqueta. Siendo `i` cada registro y `j` cada clase o etiqueta, las variables
+        de decisión tendrán el nombre `f'{records_name}_{labels_name}_i_j'`; las restricciones que
+        determinan la cantidad de registros por clase o etiqueta tendrán el nombre `f'{records_name}_{labels_name}'`;
+        y las restricciones que determinan cuánto de los valores acumulará cada clase o etiqueta
+        tendrán el nombre f'{values_name}_{labels_name}_{j}'. Para más detalles sobre cómo acceder a
+        las restricciones, ver `@property.model`.
+    
+    model_name (opcional) : str, default ''
+        Nombre que tendrá la instancia de `mip.Model` creada dentro de la clase `Optimizer`. Para
+        más detalles, ver `@property.model`.
+    
+    Funcionamiento
+    --------------
+    Una vez instanciado exitosamente un objeto de clase `opt = Optimizer(dataset, values_name, n_labels)`,
+    el modelo se ejecuta como `status = opt.model.optimize(max_seconds)`. Se recomienda capturar en una
+    variable la salida del método, como `status` en el ejemplo. Además, también se recomienda definir
+    el valor de `max_seconds` para limitar el tiempo de ejecución del modelo, como `max_seconds=300`.
+    La propiedad `opt.model` devuelve un objeto de clase `mip.Model`.
+    
+    Propiedades
+    -----------
+    model (`@getter`): mip.Model
+        Instancia de clase `mip.Model` creada dentro del objeto instanciado de clase `Optimizer`.
+        Hereda todos los métodos y propiedades de `mip.Model`. No cuenta con un `@setter`, por lo
+        que no puede ser modificado externamente. La documentación completa de la clase `mip.Model`
+        se encuentra en https://docs.python-mip.com/en/latest/classes.html#model.
+    n_labels (`@getter`, `@setter`) : int
+        Devuelve la cantidad de clases o etiquetas ingresadas como parámetro en la creación del
+        objeto `Optimizer`. Puede ser modificado posterior a la creación de la instancia para
+        probar con diferentes cantidades sin crear una nueva instancia.
+    records_slack (`@getter`, `@setter`) : int
+        Devuelve la holgura de registros. Puede ser modificada sin crear una nueva instancia.
+    values_slack (`@getter`, `@setter`) : int
+        Devuelve la holgura para la suma de valores por clase o etiqueta. Puede ser modificada
+        sin crear una nueva instancia.
+    model_name (`@getter`, `@setter`) : str
+        Devuelve el nombre del modelo que es pasado a la instancia interna de `mip.Model`. Puede
+        ser modificado sin crear una nueva instancia. Está sincronizado con `opt.model.name`.
+    
+    Ejemplos
+    --------
+    **Creación de instancia y ejecución del modelo**
+    >>> opt = Optimizer(dataset=df, values_name='income', n_labels=5, records_slack=1, values_slack=5_000_000)
+    >>> status = opt.model.optimize(max_seconds=300)
+    >>> status.name
+    'FEASIBLE'
+
+    **Con un objeto instanciado y modelo exitosamente ejecutado**
+    
+    El estado también puede ser consultado como atributo de `@property.model`:
+    >>> opt.model.status.name
+    'FEASIBLE'
+
+    Si se modifica `n_labels`, `records_slack` y/o `values_slack`, el modelo
+    debe ser ejecutado nuevamente:
+    >>> opt.n_labels = 4
+    >>> status = opt.model.optimize(max_seconds=300)
+    >>> status.name
+    'OPTIMAL'
+    """
+    
     dataset: DataFrame = field()
     values_name: str = field()
     n_labels: int = field()
@@ -146,7 +249,7 @@ class Optimizer:
         self._constr_assignment()
     
     def _constr_records(self) -> None:
-        '''Define las restricciones de cantidad de registros por etiqueta'''
+        '''Define las restricciones de cantidad de registros por clase o etiqueta'''
         for j in range(self.n_labels):
             self._model.add_constr(
                 mip.xsum(
@@ -156,7 +259,7 @@ class Optimizer:
             )
     
     def _constr_labels(self) -> None:
-        '''Define las restricciones de suma de valores por etiqueta'''
+        '''Define las restricciones de suma de valores por clase o etiqueta'''
         for j in range(self.n_labels):
             self._model.add_constr(
                 mip.xsum(
@@ -166,7 +269,7 @@ class Optimizer:
             )
     
     def _constr_assignment(self) -> None:
-        '''Define las restricciones de asignación de registro a etiqueta'''
+        '''Define las restricciones de asignación de registro a clase o etiqueta'''
         for i in range(self.n_records):
             self._model.add_constr(
                 mip.xsum(
@@ -188,12 +291,17 @@ class Optimizer:
             raw_data = []
             for i in range(self.n_records):
                 raw_data.append([self.model_vars[i,j].x for j in range(self.n_labels)])
+            
             col_names = [f'{self.labels_name}_{j}' for j in range(self.n_labels)]
             df = DataFrame(raw_data, columns=col_names)
             df['assigned'] = df.sum(axis=1).replace({0: 'not assigned', 1: np.nan})
+            
             for col in col_names:
                 df[col] = df[col].replace({1: col, 0: np.nan})
                 df['assigned'] = df['assigned'].fillna(df[col])
+            
             df.drop(columns=col_names, inplace=True)
             df = self.dataset.merge(df, left_index=True, right_index=True)
             return df
+
+opt = Optimizer()
